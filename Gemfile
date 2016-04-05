@@ -31,6 +31,14 @@ gem "paranoia", "~> 2.0"
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'exception_notification'
 gem 'thin'
+gem 'activeadmin'
+
+# Plus integrations with:
+gem 'devise'
+gem 'draper'
+gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
+gem 'active_admin_theme'
+gem 'devise-i18n'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
