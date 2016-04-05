@@ -22,8 +22,14 @@ ActiveAdmin.setup do |config|
 
   config.site_title = "Rails E2 Admin"
   # config.register_javascript 'ckeditor/init.js'
-  # config.register_javascript 'vue.min.js'
-  # config.register_javascript 'vue.admin.js'
+  config.register_javascript '//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.js'
+  config.register_javascript '//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.date.js'
+  config.register_javascript '//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.time.js'
+  config.register_javascript '//cdn.bootcss.com/pickadate.js/3.5.6/compressed/legacy.js'
+
+  config.register_javascript '//cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js'
+  config.register_stylesheet '//cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css'
+  
   
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
