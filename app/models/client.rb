@@ -24,7 +24,9 @@ class Client < ActiveRecord::Base
 
   belongs_to :sp, :class_name=>:Client, :foreign_key=>:sp_id
   has_many :clients, :class_name=>:Client, :foreign_key=>:sp_id
-  
+  has_many :client_users
+  has_many :users, :through=>:client_users
+
   scope :sp, ->{where(:is_sp=>true)}
 
   acts_as_taggable_on :tag
@@ -50,6 +52,6 @@ class Client < ActiveRecord::Base
 	end
 
 	def service_deadline
-		"#{service_started} #{service_ended_at}"
-	end	
+		"#{service_started}-#{service_ended_at}"
+	end
 end

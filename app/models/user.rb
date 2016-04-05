@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :client_users
   has_many :clients, :through=>:client_users
   validates :phone, presence: true, :uniqueness=>true
-  
   def self.permit_params
   	[:password, :phone]
   end

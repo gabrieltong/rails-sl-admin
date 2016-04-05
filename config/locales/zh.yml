@@ -49,6 +49,7 @@
     models:
       client: '商户'
       user: '用户'
+      member: '用户'
     attributes:
       client: 
         service_deadline: '服务期限'
