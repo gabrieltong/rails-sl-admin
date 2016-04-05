@@ -12,6 +12,16 @@ ActiveAdmin.register Client do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+	
+	index do |subject|
+		selectable_column
+    id_column
+    column :title
+    column :service_deadline
+    column :admin_phone
+    column :sp
+    actions
+	end
 
 	form do |f|
 		f.semantic_errors *f.object.errors.keys
@@ -32,6 +42,9 @@ ActiveAdmin.register Client do
 			f.input :wechat_account
 			f.input :wechat_title	
 			f.input :wechat_logo, :hint=>image_tag(resource.wechat_logo.url(:thumb))
+			f.input :admin_phone, :hine=>I18n.t('activerecord.attributes.clients.admin_phone_hint')
+			f.input :is_sp
+			f.input :sp, :collection=>Client.sp
 		end
 		actions
 	end
@@ -61,6 +74,25 @@ ActiveAdmin.register Client do
 			row :logo do 
 				image_tag resource.wechat_logo.url(:thumb)
 			end
+			row :admin_phone
+			shifou_row :is_sp
+			if resource.sp
+				row :sp, :collection=>Client.sp			
+			end
 		end
 	end
+
+	filter :title
+	filter :reg
+	filter :address
+	filter :location_y
+	filter :localtion_x
+	filter :area
+	filter :phone
+	filter :type
+	filter :service_started
+	filter :service_ended_at
+	filter :website
+	filter :wechat_account
+	filter :wechat_title
 end

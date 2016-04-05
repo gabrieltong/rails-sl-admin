@@ -47,10 +47,11 @@
         signature: '个性签名'
   activerecord:      
     models:
-      client: '客户'
+      client: '商户'
       user: '用户'
     attributes:
       client: 
+        service_deadline: '服务期限'
         tags_text: 'Tags'
         id: '商户ID'
         hqhj: '红券货架'
@@ -70,6 +71,10 @@
         wechat_account: '公众号账号'
         wechat_title: '公众号名称'
         wechat_logo: '公众号二维码'
+        admin_phone: '管理员'
+        admin_phone_hint: '请填写手机号作为管理员账号'
+        is_sp: '是否是服务商'
+        sp: '服务商'
         created_at: '创建日期'
       user:
         collects: '收藏'
