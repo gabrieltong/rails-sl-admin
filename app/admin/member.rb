@@ -1,5 +1,5 @@
-ActiveAdmin.register User, as: "Member" do
-	permit_params User.permit_params	
+ActiveAdmin.register Member do
+	permit_params Member.permit_params	
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -25,6 +25,7 @@ ActiveAdmin.register User, as: "Member" do
 		inputs I18n.t(:detail) do
 			f.input :phone
 	    f.input :password
+	    f.input :password_confirmation
 	  end
 		actions		
 	end
@@ -32,7 +33,6 @@ ActiveAdmin.register User, as: "Member" do
 	show do 
 		attributes_table do
 			row :phone
-	    row :password
 		end
 	end
 end
