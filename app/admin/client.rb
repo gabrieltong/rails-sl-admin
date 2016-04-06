@@ -45,6 +45,13 @@ ActiveAdmin.register Client do
 			f.input :admin_phone, :hine=>I18n.t('activerecord.attributes.clients.admin_phone_hint')
 			f.input :is_sp
 			f.input :sp, :collection=>Client.sp
+			f.input :show_name
+			f.input :show_phone
+			f.input :show_sex
+			f.input :show_borded_at
+			f.input :show_pic
+			f.input :show_address
+			f.input :show_email
 		end
 		actions
 	end
@@ -79,6 +86,13 @@ ActiveAdmin.register Client do
 			if resource.sp
 				row :sp, :collection=>Client.sp			
 			end
+			shifou_row :show_name
+			shifou_row :show_phone
+			shifou_row :show_sex
+			shifou_row :show_borded_at
+			shifou_row :show_pic
+			shifou_row :show_address
+			shifou_row :show_email
 		end
 	end
 
@@ -95,4 +109,11 @@ ActiveAdmin.register Client do
 	filter :website
 	filter :wechat_account
 	filter :wechat_title
+	filter :show_name
+	filter :show_phone
+	filter :show_sex
+	filter :show_borded_at
+	filter :show_pic
+	filter :show_address
+	filter :show_email	
 end

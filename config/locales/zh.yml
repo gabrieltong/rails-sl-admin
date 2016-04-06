@@ -76,6 +76,13 @@
         is_sp: '是否是服务商'
         sp: '服务商'
         created_at: '创建日期'
+        show_name: '显示姓名'
+        show_phone: '显示电话'
+        show_sex: '显示性别'
+        show_borded_at: '显示生日'
+        show_pic: '显示会员照片'
+        show_address: '显示邮寄地址'
+        show_email: '显示电子邮箱'
       member:
         collects: '收藏'
         borned_at: '出生日期'
