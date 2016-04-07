@@ -109,11 +109,4 @@ ActiveAdmin.register Client do
 	filter :website
 	filter :wechat_account
 	filter :wechat_title
-	filter :show_name
-	filter :show_phone
-	filter :show_sex
-	filter :show_borded_at
-	filter :show_pic
-	filter :show_address
-	filter :show_email	
 end

@@ -47,6 +47,7 @@
         signature: '个性签名'
   activerecord:      
     models:
+      active_admin: '系统管理员'
       client: '商户'
       member: '用户'
     attributes:
