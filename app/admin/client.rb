@@ -1,4 +1,5 @@
 ActiveAdmin.register Client do
+	menu :priority=>10
 	permit_params Client.permit_params
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -32,7 +33,11 @@ ActiveAdmin.register Client do
 			f.input :location_y
 			f.input :localtion_x
 			f.input :area
-			f.input :logo, :hint=>image_tag(resource.logo.url(:thumb))
+			if resource.logo.blank?
+				f.input :logo
+			else
+				f.input :logo, :hint=>image_tag(resource.logo.url(:thumb))
+			end
 			f.input :phone
 			f.input :type
 			f.input :service_started, :as=>:datepicker
@@ -41,7 +46,11 @@ ActiveAdmin.register Client do
 			f.input :tags_text, :input_html=>{:class=>:tags}
 			f.input :wechat_account
 			f.input :wechat_title	
-			f.input :wechat_logo, :hint=>image_tag(resource.wechat_logo.url(:thumb))
+			if resource.wechat_logo.blank?
+				f.input :wechat_logo
+			else
+				f.input :wechat_logo, :hint=>image_tag(resource.wechat_logo.url(:thumb))
+			end			
 			f.input :admin_phone, :hine=>I18n.t('activerecord.attributes.clients.admin_phone_hint')
 			f.input :is_sp
 			f.input :sp, :collection=>Client.sp
@@ -68,9 +77,7 @@ ActiveAdmin.register Client do
 			row :localtion_x
 			row :area
 			row :phone
-			row :logo do 
-				image_tag resource.logo.url(:thumb)
-			end
+			image_row :logo
 			row :type
 			row :service_started
 			row :service_ended_at
@@ -78,9 +85,7 @@ ActiveAdmin.register Client do
 			row :tags_text
 			row :wechat_account
 			row :wechat_title				
-			row :logo do 
-				image_tag resource.wechat_logo.url(:thumb)
-			end
+			image_row :wechat_logo
 			row :admin_phone
 			shifou_row :is_sp
 			if resource.sp

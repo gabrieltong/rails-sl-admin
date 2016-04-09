@@ -93,7 +93,9 @@ module ActiveAdmin
 
       def image_row(attribute)
       	row(attribute) do |model|
-      		link_to image_tag(model.try(attribute).url(:medium)),model.try(attribute).url,target: '_blank'
+          unless model.try(attribute).blank?
+      		  link_to image_tag(model.try(attribute).url(:thumb)),model.try(attribute).url,target: '_blank'
+          end
       	end
       end
 

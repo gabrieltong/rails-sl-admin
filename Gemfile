@@ -31,7 +31,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'exception_notification'
 gem 'thin'
 gem 'activeadmin'
-
+gem 'formtastic'
 # Plus integrations with:
 gem 'devise'
 gem 'draper'
