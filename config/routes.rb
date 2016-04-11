@@ -56,4 +56,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :api, :only=>[] do 
+    collection do 
+      post :create_mobile_file
+    end
+  end  
+  
 end
