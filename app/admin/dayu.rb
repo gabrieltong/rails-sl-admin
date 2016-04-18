@@ -1,6 +1,5 @@
-ActiveAdmin.register Member do
-	menu priority: 20
-	permit_params Member.permit_params	
+ActiveAdmin.register Dayu do
+  menu :priority=>100
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -15,27 +14,23 @@ ActiveAdmin.register Member do
 # end
 
 	index do |subject|
-		selectable_column
+    selectable_column
     id_column
-    column :phone
+    column :recNum
+		column :smsType
+		column :smsFreeSignName
+		column :smsTemplateCode
+		column :smsParam
+    column :sended
+    column :sended_at
     actions
-	end
+  end
 
-	form do |f|
-		f.semantic_errors *f.object.errors.keys
-		inputs I18n.t(:detail) do
-			f.input :phone
-	    f.input :password
-	    f.input :password_confirmation
-	  end
-		actions		
-	end
-
-	show do
-		attributes_table do
-			row :phone
-		end
-	end
-
-	filter :phone
+  filter :recNum
+  filter :smsType
+  filter :smsFreeSignName
+  filter :smsTemplateCode
+  filter :smsParam
+  filter :sended
+  filter :sended_at
 end

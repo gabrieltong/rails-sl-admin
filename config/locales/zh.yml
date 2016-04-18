@@ -53,7 +53,16 @@
       client_member: '会员'
       client_manager: '操作员'
       group: '会员组'
+      dayu: '短信'
     attributes:
+      dayu:
+        recNum: '电话号码'
+        smsType: '类型'
+        smsFreeSignName: '签名'
+        smsTemplateCode: '模板'
+        smsParam: '参数'
+        sended: '是否发送'
+        sended_at: '发送时间'
       group:
         id: '会员组ID'
         title: '会员组名'
