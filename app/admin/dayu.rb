@@ -12,6 +12,9 @@ ActiveAdmin.register Dayu do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  scope :all
+  scope :sended
+  scope :not_sended
 
 	index do |subject|
     selectable_column
