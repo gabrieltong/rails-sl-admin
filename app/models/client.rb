@@ -5,12 +5,14 @@ class Client < ActiveRecord::Base
 
   attr_accessor :tags_text
   validates :title, presence: true
-  # validates :reg, :presence=>true
+  validates :reg, :presence=>true
   # validates :address, :presence=>true
   # validates :position, :presence=>true
   # validates :location_y, :presence=>true
   # validates :localtion_x, :presence=>true
-  # validates :phone, :presence=>true
+  validates :logo, :presence=>true
+  validates :admin_phone, :presence=>true
+  validates :phone, :presence=>true
   # validates :area, :presence=>true
   # validates :type, :presence=>true
   # validates :service_started, :presence=>true
@@ -18,6 +20,7 @@ class Client < ActiveRecord::Base
   # validates :website, :presence=>true
   # validates :wechat_account, :presence=>true
   # validates :wechat_title, :presence=>true
+  # validates :sp, :presence=>true, :if=>"is_sp != 1"
   validates :longitude, :numericality=>{:greater_than_or_equal_to=>-180, :less_than_or_equal_to=>180}, :allow_nil=>true
   validates :latitude, :numericality=>{:greater_than_or_equal_to=>-90, :less_than_or_equal_to=>90}, :allow_nil=>true
 

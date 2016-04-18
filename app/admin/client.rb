@@ -52,15 +52,7 @@ ActiveAdmin.register Client do
         f.input :wechat_logo, :hint=>image_tag(resource.wechat_logo.url(:thumb))
       end     
       f.input :admin_phone, :hine=>I18n.t('activerecord.attributes.clients.admin_phone_hint')
-      f.input :is_sp
-      f.input :sp, :collection=>Client.sp
-      f.input :show_name
-      f.input :show_phone
-      f.input :show_sex
-      f.input :show_borded_at
-      f.input :show_pic
-      f.input :show_address
-      f.input :show_email
+      f.input :sp, :collection=>Client.sp, :prompt => "服务商", :label=>'服务商设置'
     end
     actions
   end
@@ -87,17 +79,7 @@ ActiveAdmin.register Client do
       row :wechat_title       
       image_row :wechat_logo
       row :admin_phone
-      shifou_row :is_sp
-      if resource.sp
-        row :sp, :collection=>Client.sp     
-      end
-      shifou_row :show_name
-      shifou_row :show_phone
-      shifou_row :show_sex
-      shifou_row :show_borded_at
-      shifou_row :show_pic
-      shifou_row :show_address
-      shifou_row :show_email
+      row :sp, :collection=>Client.sp
     end
   end
 

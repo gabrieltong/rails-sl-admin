@@ -114,6 +114,7 @@
         admin_phone_hint: '请填写手机号作为管理员账号'
         is_sp: '是否是服务商'
         sp: '服务商'
+        set_sp: '服务商设置'
         created_at: '创建日期'
         show_name: '显示姓名'
         show_phone: '显示电话'
