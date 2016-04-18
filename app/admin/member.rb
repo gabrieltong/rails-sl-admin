@@ -31,7 +31,7 @@ ActiveAdmin.register Member do
 		actions		
 	end
 
-	show do 
+	show do
 		attributes_table do
 			row :phone
 		end

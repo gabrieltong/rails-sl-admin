@@ -57,10 +57,10 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :api, :only=>[] do 
-    collection do 
+  resources :api, :only=>[] do
+    collection do
       post :create_mobile_file
     end
-  end  
-  
+  end
+
 end

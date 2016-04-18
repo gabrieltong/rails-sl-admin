@@ -7,12 +7,12 @@ module ActiveAdmin
       end
 
       def yesno_column(attribute)
-        column(attribute) do |model| 
-        	case model[attribute] 
+        column(attribute) do |model|
+        	case model[attribute]
         	when true
         		'&#x2714;'.html_safe
         	when false
-        		'&#x2717;'.html_safe 
+        		'&#x2717;'.html_safe
         	else
         		''
         	end
@@ -20,8 +20,8 @@ module ActiveAdmin
       end
 
       def shifou_column(attribute)
-        column(attribute) do |model| 
-          case model[attribute] 
+        column(attribute) do |model|
+          case model[attribute]
           when true
             '是'
           when false
@@ -40,18 +40,17 @@ module ActiveAdmin
       end
     end
     class AttributesTable
-      
+
       def i18n_row(attribute)
-        row(attribute) do  |model| 
+        row(attribute) do  |model|
         	if model[attribute] && !model[attribute].blank?
-        		I18n.t model[attribute] 
+        		I18n.t model[attribute]
         	end
         end
       end
 
-      
       def a_row(attribute)
-        row(attribute) do  |model| 
+        row(attribute) do  |model|
         	c = model[attribute]
         	"<a href=#{c}>#{c}</a>".html_safe
         end
@@ -62,12 +61,12 @@ module ActiveAdmin
       end
 
       def yesno_row(attribute)
-        row(attribute) do  |model| 
-          case model[attribute] 
+        row(attribute) do  |model|
+          case model[attribute]
           when true
             '&#x2714;'.html_safe
           when false
-            '&#x2717;'.html_safe 
+            '&#x2717;'.html_safe
           else
             ''
           end
@@ -75,8 +74,8 @@ module ActiveAdmin
       end
 
       def shifou_row(attribute)
-        row(attribute) do  |model| 
-          case model[attribute] 
+        row(attribute) do  |model|
+          case model[attribute]
           when true
             '是'
           when false
@@ -155,7 +154,7 @@ module ActiveAdminHelper
 			s = MyOption.new
 			s.label = t key
 			s.value = key
-			s 
+			s
 		end
 	end
 
@@ -166,10 +165,10 @@ module ActiveAdminHelper
 	def response_msg notification
 		unless notification.normal?
 			msg = ''
-			msg = msg + t(notification.response) if notification.response 
+			msg = msg + t(notification.response) if notification.response
 	    msg = msg + link_to('同意',confirm_admin_notification_path(notification),:class=>'btn btn-mini') unless notification.response
-	    msg = msg + ' '  
-	    msg = msg + link_to('不同意',unconfirm_admin_notification_path(notification),:class=>'btn btn-mini') unless notification.response 
+	    msg = msg + ' '
+	    msg = msg + link_to('不同意',unconfirm_admin_notification_path(notification),:class=>'btn btn-mini') unless notification.response
 	    msg.html_safe
 	  end
 	end

@@ -65,7 +65,7 @@ ActiveAdmin.register Client do
 		actions
 	end
 
-	show do 
+	show do
 		attributes_table do
 			row :id
 			row :hqhj

@@ -12,7 +12,7 @@ ActiveAdmin.setup do |config|
       menu.add label: I18n.t('other'), priority: 99999
     end
   end
-  
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -29,8 +29,8 @@ ActiveAdmin.setup do |config|
 
   config.register_javascript '//cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js'
   config.register_stylesheet '//cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css'
-  
-  
+
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
