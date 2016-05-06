@@ -42,7 +42,7 @@ ActiveAdmin.register Client do
         f.input :logo, :hint=>image_tag(resource.logo.url(:thumb))
       end
       f.input :phone
-      f.input :type
+      f.input :type, :collection=>Client::Type
       f.input :service_started, :as=>:datepicker
       f.input :service_ended_at, :as=>:datepicker
       f.input :website
