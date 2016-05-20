@@ -13,6 +13,7 @@ ActiveAdmin.register Client do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+
   scope :all
   scope :sp
   scope :not_sp
