@@ -87,7 +87,7 @@ class CardTpl < ActiveRecord::Base
   end 
 
   before_save do |record|
-    # 如果不是公开卷， 默认勾选所有会员组
+    # 如果需要登录， 默认勾选所有会员组
     if record.class.login.exists? record.id
       record.groups = record.client.groups
     end
