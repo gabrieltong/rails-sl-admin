@@ -75,8 +75,12 @@ ActiveAdmin.register Client do
       row :phone
       image_row :logo
       row :type
-      row :service_started
-      row :service_ended_at
+      row :service_started do |i|
+        i.service_started.strftime("%F")
+      end
+      row :service_ended_at do |i|
+        i.service_ended_at.strftime("%F")
+      end
       row :website
       row :tags_text
       row :wechat_account
