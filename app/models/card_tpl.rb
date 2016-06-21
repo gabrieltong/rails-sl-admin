@@ -197,8 +197,8 @@ class CardTpl < ActiveRecord::Base
     end
   end
 
+  # 手机号群组权限， 匿名券无需判断
   def groups_can_acquire? phone=''
-    logger.info 'groups_can_acquire >>>>'
     if self.class.anonymous.include? self.id
       return true
     else
@@ -252,26 +252,34 @@ class CardTpl < ActiveRecord::Base
     end
   end
 
-  # 卡券领取类型
+  # 游客券，会员券权限判断
+  # 如果phone不是手机号时 ， 必须时游客券
   def acquire_type_can_acquire? phone
-    if phone.blank?
-      return self.class.anonymous.exists?(id)
+    if ChinaPhoneValidator.validate(phone) == false
+      return self.acquire_type.to_sym == :anonymous
     else
       true
     end
   end
 
+  # 根据agent是否公开权限
+  # agent＝:user 说明是微信端领取，必须是公开券
+  # agent＝:admin 说明是客户端发送，必须不是公开券
   def public_type_can_acquire? agent
     if agent.to_sym == :user
-      return self.class.open.exists?(id)
+      return self.open? == true
     elsif agent.to_sym == :admin
-      return self.class.unopen.exists?(id)
+      return self.open? == false
     end
   end
 
+  def open?
+    self.public == true
+  end
   # 验证投放日期日期
   def datetime_can_acquire?
-    self.class.datetime_acquirable.exists?(id)
+    # self.class.datetime_acquirable.exists?(id)
+    self.from < DateTime.now && self.to < DateTime.now
   end
 
   # 验证投放时间
@@ -295,7 +303,11 @@ class CardTpl < ActiveRecord::Base
   end
 
   def can_send_by_phone? phone
-    self.class.sendable_by(phone).exists?(id)
+    if self.open?
+      phone.blank?
+    else
+      self.class.sendable_by(phone).exists?(id)
+    end
   end
 
   def can_check_by_phone? phone
@@ -344,6 +356,13 @@ class CardTpl < ActiveRecord::Base
           send_message_acquired_cards phone, number
 
           client.create_activity key: 'card.acquire', owner: Member.find_by_phone(by_phone), recipient: self, :parameters=>{:phone=>phone, :by_phone=>by_phone, :number=>number,:type=>'发券',:msg=>"#{phone}获得了#{number}张卡券,操作员#{by_phone}"}
+          member = Member.get_instance_by_phone(phone)
+          group = client.groups.default.first
+
+          if group && member
+            group.group_members << GroupMember.new(:phone=>member.phone, :started_at=>DateTime.now, :ended_at=>DateTime.now + GroupMember::DEFAULT_PERIOD)
+            # group.members << member
+          end
         end
         return result
       else
@@ -355,15 +374,17 @@ class CardTpl < ActiveRecord::Base
   end
 
   def send_message_acquired_cards phone, number
-    config = {
-      'type'=>'acquired_cards',
-      'smsType'=>'normal',
-      'smsFreeSignName'=>'红券',
-      'smsParam'=>{cardnumber: number.to_s, brand: client.try(:brand).to_s, cardname: title.to_s, wechatid: client.try(:wechat_account) },
-      'recNum'=>phone,
-      'smsTemplateCode'=>'SMS_8970466'
-    }
-    Dayu.createByDayuable(self, config).run
+    unless phone.blank?
+      config = {
+        'type'=>'acquired_cards',
+        'smsType'=>'normal',
+        'smsFreeSignName'=>'红券',
+        'smsParam'=>{cardnumber: number.to_s, brand: client.try(:brand).to_s, cardname: title.to_s, wechatid: client.try(:wechat_account) },
+        'recNum'=>phone,
+        'smsTemplateCode'=>'SMS_8970466'
+      }
+      Dayu.createByDayuable(self, config).run
+    end
   end
 
   def send_message_checked_cards phone, number
